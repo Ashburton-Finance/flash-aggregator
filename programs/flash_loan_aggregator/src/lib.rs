@@ -3,24 +3,24 @@ use anchor_lang::prelude::*;
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
-pub mod flash_loan_aggregator {
+pub mod flashaggregator {
     use super::*;
 
-    // /**
-    //  * @dev The amount of currency available to be lent.
-    //  * @param token The loan currency.
-    //  * @return The amount of `token` that can be borrowed.
-    //  */
+    /**
+     * @dev The amount of currency available to be lent.
+     * @param token The loan currency.
+     * @return The amount of `token` that can be borrowed.
+     */
     pub fn maxflashloan(ctx: Context<MaxFlashLoan>) -> ProgramResult {
         Ok(())
     }
 
-    // /**
-    //  * @dev The fee to be charged for a given loan.
-    //  * @param token The loan currency.
-    //  * @param amount The amount of tokens lent.
-    //  * @return The amount of `token` to be charged for the loan, on top of the returned principal.
-    //  */
+    /**
+     * @dev The fee to be charged for a given loan.
+     * @param token The loan currency.
+     * @param amount The amount of tokens lent.
+     * @return The amount of `token` to be charged for the loan, on top of the returned principal.
+     */
     pub fn flashfee(ctx: Context<FlashFee>, amount: u64) -> ProgramResult {
         Ok(())
     }
@@ -67,4 +67,24 @@ pub struct FlashLoan<'info> {
     pub flask_loan_receiver: AccountInfo<'info>,
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
+}
+
+fn sqrt(number: f64) -> Result<f64, String> {
+    if number >= 0.0 {
+        Ok(number.powf(0.5))
+    } else {
+        Err("negative floats don't have square roots".to_owned())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_sqrt() -> Result<(), String> {
+        let x = 4.0;
+        assert_eq!(sqrt(x)?.powf(2.0), x);
+        Ok(())
+    }
 }

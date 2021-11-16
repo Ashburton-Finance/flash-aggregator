@@ -9,9 +9,9 @@ describe('flash_loan_aggregator', () => {
 
   const program = anchor.workspace.FlashLoanAggregator as Program<FlashLoanAggregator>;
 
-  it('Is initialized!', async () => {
+  it('maxflashloan', async () => {
     // Add your test here.
-    const tx = await program.rpc.initialize({});
+    const tx = await program.rpc.maxflashloan({});
     console.log("Your transaction signature", tx);
   });
 });
