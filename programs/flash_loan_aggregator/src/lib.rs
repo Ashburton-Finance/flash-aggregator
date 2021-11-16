@@ -11,11 +11,7 @@ pub mod flashaggregator {
      * @param token The loan currency.
      * @return The amount of `token` that can be borrowed.
      */
-    pub fn maxflashloan(
-        ctx: Context<MaxFlashLoan>,
-        amount: u64,
-        quote_token_mint: Pubkey,
-    ) -> ProgramResult {
+    pub fn maxflashloan(ctx: Context<MaxFlashLoan>) -> ProgramResult {
         Ok(())
     }
 
@@ -25,11 +21,7 @@ pub mod flashaggregator {
      * @param amount The amount of tokens lent.
      * @return The amount of `token` to be charged for the loan, on top of the returned principal.
      */
-    pub fn flashfee(
-        ctx: Context<FlashFee>,
-        amount: u64,
-        quote_token_mint: Pubkey,
-    ) -> ProgramResult {
+    pub fn flashfee(ctx: Context<FlashFee>, amount: u64) -> ProgramResult {
         Ok(())
     }
 
