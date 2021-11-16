@@ -6,21 +6,21 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod flash_loan_aggregator {
     use super::*;
 
-    // /**
-    //  * @dev The amount of currency available to be lent.
-    //  * @param token The loan currency.
-    //  * @return The amount of `token` that can be borrowed.
-    //  */
+    /**
+     * @dev The amount of currency available to be lent.
+     * @param token The loan currency.
+     * @return The amount of `token` that can be borrowed.
+     */
     pub fn maxflashloan(ctx: Context<MaxFlashLoan>) -> ProgramResult {
         Ok(())
     }
 
-    // /**
-    //  * @dev The fee to be charged for a given loan.
-    //  * @param token The loan currency.
-    //  * @param amount The amount of tokens lent.
-    //  * @return The amount of `token` to be charged for the loan, on top of the returned principal.
-    //  */
+    /**
+     * @dev The fee to be charged for a given loan.
+     * @param token The loan currency.
+     * @param amount The amount of tokens lent.
+     * @return The amount of `token` to be charged for the loan, on top of the returned principal.
+     */
     pub fn flashfee(ctx: Context<FlashFee>, amount: u64) -> ProgramResult {
         Ok(())
     }
