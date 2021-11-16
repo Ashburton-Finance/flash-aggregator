@@ -40,7 +40,7 @@ jobs:
 
       - id: install-anchor-cli
         if: steps.cache-cli-deps.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/jet-lab/anchor anchor-cli --locked
+        run: cargo install --git https://github.com/project-serum/anchor anchor-cli --locked
 
   build:
     runs-on: ubuntu-latest
