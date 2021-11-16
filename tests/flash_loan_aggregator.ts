@@ -14,4 +14,11 @@ describe('flash_loan_aggregator', () => {
     const tx = await program.rpc.maxflashloan({});
     console.log("Your transaction signature", tx);
   });
+
+
+  it('initialise and check max flash loan', async () => {
+    // Add your test here.
+    const tx = await program.rpc.initialize({});
+    console.log("Your transaction signature", tx);
+  });
 });
