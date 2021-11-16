@@ -45,28 +45,10 @@ pub struct FlashFee {}
 
 #[derive(Accounts)]
 pub struct FlashLoan<'info> {
-    // Lending program
-    pub lending_program: AccountInfo<'info>,
-    // Source liquidity token account
-    pub source_liquidity: AccountInfo<'info>,
-    // Destination liquidity token account - same mint as source liquidity
-    pub destination_liquidity: AccountInfo<'info>,
-    // Reserve account
-    pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
     pub flash_loan_fee_receiver: AccountInfo<'info>,
-    // Host fee receiver
-    pub host_fee_receiver: AccountInfo<'info>,
-    // Lending market account
-    pub lending_market: AccountInfo<'info>,
-    // Derived lending market authority - PDA
-    pub derived_lending_market_authority: AccountInfo<'info>,
     // Token program ID
     pub token_program_id: AccountInfo<'info>,
-    // Flash loan program receiver ID
-    pub flask_loan_receiver: AccountInfo<'info>,
-    // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
-    // RECEIVER'S FLASHLOAN INSTRUCTION
 }
 
 fn sqrt(number: f64) -> Result<f64, String> {
