@@ -67,9 +67,6 @@ jobs:
           fetch-depth: 0
 
           
-      - run: npm install -g mocha
-      - run: npm install -g ts-mocha
-      - run: npm install -g typescript
       - run: npm install
       - run: npm install @project-serum/anchor -g
       - run: solana-keygen new --no-bip39-passphrase
