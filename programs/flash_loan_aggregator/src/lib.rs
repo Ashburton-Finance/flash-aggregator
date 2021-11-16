@@ -6,6 +6,10 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod flash_loan_aggregator {
     use super::*;
 
+    pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
+        Ok(())
+    }
+
     /**
      * @dev The amount of currency available to be lent.
      * @param token The loan currency.
@@ -36,6 +40,9 @@ pub mod flash_loan_aggregator {
         Ok(())
     }
 }
+
+#[derive(Accounts)]
+pub struct Initialize {}
 
 #[derive(Accounts)]
 pub struct MaxFlashLoan {}
