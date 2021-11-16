@@ -6,6 +6,13 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod flashaggregator {
     use super::*;
 
+    pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
+        let base_account = &mut ctx.accounts.base_account;
+        base_account.flash_fee = 23;
+        base_account.max_flash_loan = 2342;
+        Ok(())
+    }
+
     /**
      * @dev The amount of currency available to be lent.
      * @param token The loan currency.
@@ -35,6 +42,22 @@ pub mod flashaggregator {
     pub fn flash_loan<'info>(ctx: Context<FlashLoan>, amount: u64) -> ProgramResult {
         Ok(())
     }
+}
+
+// ref: https://github.com/patriciobcs/solask/blob/master/programs/solask/src/lib.rs
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(init, payer = user, space = 9000)]
+    pub base_account: Account<'info, BaseAccount>,
+    #[account(mut)]
+    pub user: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[account]
+pub struct BaseAccount {
+    pub flash_fee: u64,
+    pub max_flash_loan: u64,
 }
 
 #[derive(Accounts)]
