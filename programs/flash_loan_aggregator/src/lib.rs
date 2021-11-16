@@ -44,6 +44,7 @@ pub mod flashaggregator {
     }
 }
 
+// ref: https://github.com/patriciobcs/solask/blob/master/programs/solask/src/lib.rs
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init, payer = user, space = 9000)]
