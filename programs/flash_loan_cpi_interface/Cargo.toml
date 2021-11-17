@@ -1,8 +1,10 @@
 [package]
 name = "flash_loan_cpi_interface"
-version = "0.1.0"
 description = "Created with Anchor"
+authors = ["Rohan Kapur <kapurrohan56@gmail.com>"]
+version = "0.2.2"
 edition = "2018"
+description = "Anchor CPI client for the lending programs"
 
 [lib]
 crate-type = ["cdylib", "lib"]
