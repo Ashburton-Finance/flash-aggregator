@@ -12,7 +12,7 @@ Applications for flash loans are:
 # Running tests
 
 
-Run integration tests
+Run integration tests directly on devnet, in order to interact with the existing on chain programs.
 
 ```bash
 anchor test
