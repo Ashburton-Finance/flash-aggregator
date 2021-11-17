@@ -12,7 +12,7 @@ use anchor_lang::prelude::*;
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
-pub mod flashaggregator_module {
+pub mod flashaggregator {
     use super::*;
     use cpi::{deposit_reserve_liquidity, flash_loan, DepositReserveLiquidity, FlashLoan};
 
