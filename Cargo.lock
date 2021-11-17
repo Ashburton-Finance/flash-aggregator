@@ -146,6 +146,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "anchor-spl"
+version = "0.18.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a6d6c8fbc834319618581a4e19807a30e76326b9981abd069addb55acf0647db"
+dependencies = [
+ "anchor-lang",
+ "solana-program",
+ "spl-associated-token-account",
+ "spl-token 3.2.0",
+]
+
+[[package]]
 name = "anchor-syn"
 version = "0.18.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -465,6 +477,7 @@ name = "flashaggregator"
 version = "0.1.0"
 dependencies = [
  "anchor-lang",
+ "anchor-spl",
  "solana-program",
  "spl-token-lending",
 ]
@@ -1052,9 +1065,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "spl-associated-token-account"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "393e2240d521c3dd770806bff25c2c00d761ac962be106e14e22dd912007f428"
+dependencies = [
+ "solana-program",
+ "spl-token 3.2.0",
+]
+
+[[package]]
 name = "spl-token"
 version = "3.1.1"
 source = "git+https://github.com/solendprotocol/solana-program-library#91c955e9989ff026daef2a1daf2b42fd671a4306"
+dependencies = [
+ "arrayref",
+ "num-derive",
+ "num-traits",
+ "num_enum",
+ "solana-program",
+ "thiserror",
+]
+
+[[package]]
+name = "spl-token"
+version = "3.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93bfdd5bd7c869cb565c7d7635c4fafe189b988a0bdef81063cd9585c6b8dc01"
 dependencies = [
  "arrayref",
  "num-derive",
@@ -1074,7 +1111,7 @@ dependencies = [
  "num-derive",
  "num-traits",
  "solana-program",
- "spl-token",
+ "spl-token 3.1.1",
  "switchboard-program",
  "thiserror",
  "uint",
