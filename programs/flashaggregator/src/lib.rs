@@ -9,7 +9,7 @@ use anchor_spl::token::{Mint, Token, TokenAccount};
 
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ");
 
 #[program]
 pub mod flashaggregator {
