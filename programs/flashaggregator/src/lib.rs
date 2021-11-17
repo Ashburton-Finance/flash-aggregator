@@ -61,19 +61,14 @@ pub mod flashaggregator_module {
         let cpi_accounts = FlashLoan {
             lending_program: ctx.accounts.lending_program.clone(),
             source_liquidity: ctx.accounts.source_liquidity.to_account_info().clone(),
-            destination_collateral_account: ctx
-                .accounts
-                .destination_collateral
-                .to_account_info()
-                .clone(),
-            reserve_account: ctx.accounts.reserve.clone(),
-            reserve_collateral_mint: ctx.accounts.reserve_collateral_mint.clone(),
-            reserve_liquidity_supply: ctx.accounts.reserve_liquidity_supply.clone(),
-            lending_market_account: ctx.accounts.lending_market.clone(),
-            lending_market_authority: ctx.accounts.lending_market_authority.clone(),
-            transfer_authority: ctx.accounts.transfer_authority.clone(),
-            clock: ctx.accounts.clock.to_account_info().clone(),
-            token_program_id: ctx.accounts.token_program.to_account_info(),
+            destination_liquidity: ctx.accounts.destination_liquidity.clone(),
+            reserve: ctx.accounts.reserve.clone(),
+            flash_loan_fee_receiver: ctx.accounts.flash_loan_fee_receiver.clone(),
+            host_fee_receiver: ctx.accounts.host_fee_receiver.clone(),
+            lending_market: ctx.accounts.lending_market.clone(),
+            derived_lending_market_authority: ctx.accounts.derived_lending_market_authority.clone(),
+            token_program_id: ctx.accounts.token_program_id.clone(),
+            flask_loan_receiver: ctx.accounts.flask_loan_receiver.clone(),
         };
 
         let user_authority = ctx.accounts.user_authority.clone();
@@ -98,6 +93,9 @@ pub mod flashaggregator_module {
 #[derive(Accounts)]
 #[instruction(nonce: u8, liquidity_amount: u64, _bump: u8)]
 pub struct FlashLoanWrapper<'info> {
+    // AccountInfo of the account that calls the ix
+    #[account(signer)]
+    pub user_authority: AccountInfo<'info>,
     // Lending program
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
@@ -122,38 +120,6 @@ pub struct FlashLoanWrapper<'info> {
     // RECEIVER'S FLASHLOAN INSTRUCTION
 }
 
-#[account]
-#[derive(Default)]
-pub struct DepositState {
-    // Pubkey of depositor that called ix
-    pub user_authority: Pubkey,
-    // Pubkey of account holding the reserve collateral token
-    // Used for AddToDeposit context struct constraints
-    pub collateral_account_key: Pubkey,
-    // Current amount of liquidity tokens deposited
-    // Update on withdraw or modification
-    pub liquidity_amount: u64,
-    // Current amount of reserve collateral tokens being controlled by PDA
-    // Update on withdraw or modification
-    pub collateral_amount: u64,
-
-    // Pubkey of reserve account of pool where liquidity is deposited
-    pub reserve_account: Pubkey,
-    // Token mint of token to run dca strategy on
-    pub dca_mint: Pubkey,
-    // Set this as ATA of signer
-    pub dca_recipient: Pubkey,
-    // OOA Pubkey
-    pub ooa: Option<Pubkey>,
-
-    // Unix timestamp of deposit
-    pub created_at: i64,
-    // Integer representing the amount of times a DCA has executed
-    pub counter: u16,
-    // Nonce
-    pub nonce: u8,
-}
-
 // ref: https://github.com/patriciobcs/solask/blob/master/programs/solask/src/lib.rs
 #[derive(Accounts)]
 pub struct Initialize<'info> {
@@ -165,6 +131,7 @@ pub struct Initialize<'info> {
 }
 
 #[account]
+#[derive(Default)] // todo: is this necessary?
 pub struct BaseAccount {
     pub flash_fee: u64,
     pub max_flash_loan: u64,
