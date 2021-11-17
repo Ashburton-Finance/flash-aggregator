@@ -14,7 +14,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 #[program]
 pub mod flashaggregator_module {
     use super::*;
-    use cpi::{deposit_reserve_liquidity, DepositReserveLiquidity};
+    use cpi::{deposit_reserve_liquidity, flash_loan, DepositReserveLiquidity, FlashLoan};
 
     pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
         let base_account = &mut ctx.accounts.base_account;
@@ -49,12 +49,16 @@ pub mod flashaggregator_module {
      * @param amount The amount of tokens lent.
      * @param data Arbitrary data structure, intended to contain user-defined parameters.
      */
-    pub fn flash_loan<'info>(ctx: Context<FlashLoan>, amount: u64, nonce: u8) -> ProgramResult {
+    pub fn flash_loan_wrapper<'info>(
+        ctx: Context<FlashLoanWrapper>,
+        amount: u64,
+        nonce: u8,
+    ) -> ProgramResult {
         // ref: https://github.com/solana-labs/solana-program-library/blob/master/token-lending/program/tests/flash_loan.rs
         // Use this api as reference: https://github.com/ilmoi/token_lending_cli/blob/master/js/cli/main.ts
 
-        // Make deposit into lending program
-        let cpi_accounts = DepositReserveLiquidity {
+        // take a flash loan
+        let cpi_accounts = FlashLoan {
             lending_program: ctx.accounts.lending_program.clone(),
             source_liquidity: ctx.accounts.source_liquidity.to_account_info().clone(),
             destination_collateral_account: ctx
@@ -86,61 +90,36 @@ pub mod flashaggregator_module {
             cpi_accounts,
             pda_signer,
         );
-        deposit_reserve_liquidity(cpi_ctx, amount)?;
+        flash_loan(cpi_ctx, amount)?;
         Ok(())
     }
 }
 
 #[derive(Accounts)]
 #[instruction(nonce: u8, liquidity_amount: u64, _bump: u8)]
-pub struct FlashLoan<'info> {
-    // Deposit state account
-    #[account(init, payer = user_authority)]
-    pub deposit: Account<'info, DepositState>,
-
-    // AccountInfo of the account that calls the ix
-    #[account(signer)]
-    pub user_authority: AccountInfo<'info>,
-
-    // Solend, Jet, or Port program
+pub struct FlashLoanWrapper<'info> {
+    // Lending program
     pub lending_program: AccountInfo<'info>,
-
-    // Token mint of DCA receiving asset
-    pub dca_mint: Account<'info, Mint>,
-
-    // Solend CPI accounts
-    // Token account for asset to deposit into reserve and make sure account owner is transfer authority PDA
-    #[account(
-        constraint = source_liquidity.amount >= liquidity_amount,
-        constraint = source_liquidity.owner == *transfer_authority.key
-    )]
-    pub source_liquidity: Account<'info, TokenAccount>,
-    // Token account for reserve collateral token
-    // Make sure it has a 0 balance to ensure empty account and make sure account owner is transfer authority PDA
-    #[account(
-        constraint = destination_collateral.amount == 0,
-        constraint = destination_collateral.owner == *transfer_authority.key,
-    )]
-    pub destination_collateral: Account<'info, TokenAccount>,
-    // Reserve state account
+    // Source liquidity token account
+    pub source_liquidity: AccountInfo<'info>,
+    // Destination liquidity token account - same mint as source liquidity
+    pub destination_liquidity: AccountInfo<'info>,
+    // Reserve account
     pub reserve: AccountInfo<'info>,
-    // Token mint for reserve collateral token
-    pub reserve_collateral_mint: AccountInfo<'info>,
-    // Reserve liquidity supply SPL token account
-    pub reserve_liquidity_supply: AccountInfo<'info>,
+    // Flash loan fee receiver account
+    pub flash_loan_fee_receiver: AccountInfo<'info>,
+    // Host fee receiver
+    pub host_fee_receiver: AccountInfo<'info>,
     // Lending market account
     pub lending_market: AccountInfo<'info>,
-    // Lending market authority (PDA)
-    pub lending_market_authority: AccountInfo<'info>,
-    // Transfer authority for source_liquidity and desitnation_collateral accounts
-    #[account(seeds = [&user_authority.key.to_bytes()[..32], &reserve.key.to_bytes()[..32], &[nonce]], bump = _bump)]
-    pub transfer_authority: AccountInfo<'info>,
-
-    pub system_program: Program<'info, System>,
-    // Clock
-    pub clock: Sysvar<'info, Clock>,
-    // Token program
-    pub token_program: Program<'info, Token>,
+    // Derived lending market authority - PDA
+    pub derived_lending_market_authority: AccountInfo<'info>,
+    // Token program ID
+    pub token_program_id: AccountInfo<'info>,
+    // Flash loan program receiver ID
+    pub flask_loan_receiver: AccountInfo<'info>,
+    // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
+    // RECEIVER'S FLASHLOAN INSTRUCTION
 }
 
 #[account]
