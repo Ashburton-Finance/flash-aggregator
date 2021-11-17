@@ -9,6 +9,33 @@ Applications for flash loans are:
 2. debt refinancing
 3. many more undiscovered applications
 
+# Getting a unique id for your program
+
+run `anchor test` first. This will generate a key pair for you. Then run:
+```
+solana address -k target/deploy/flashaggregator-keypair.json 
+
+# BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ
+```
+
+Now in `programs/flashaggregator/src/lib.rs` and `Anchor.toml` change `your-program-id` to the address you got in the previous step.
+```
+// programs/flashaggregator/src/lib.rs
+
+declare_id!("your-program-id");
+```
+
+```
+# Anchor.toml
+
+[programs.devnet]
+flashaggregator = "your-program-id"
+```
+
+
+
+Then in BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ
+
 # Running tests
 
 
