@@ -16,3 +16,6 @@ default = []
 
 [dependencies]
 anchor-lang = "0.18.2"
+spl-token-lending = { git = "https://github.com/solendprotocol/solana-program-library", version = "0.1.0", features = ["no-entrypoint"] }
+solana-program = "1.7.11"
+
