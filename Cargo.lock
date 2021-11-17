@@ -146,15 +146,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anchor-lending"
-version = "0.2.2"
-dependencies = [
- "anchor-lang",
- "solana-program",
- "spl-token-lending",
-]
-
-[[package]]
 name = "anchor-syn"
 version = "0.18.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -468,6 +459,15 @@ name = "feature-probe"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "835a3dc7d1ec9e75e2b5fb4ba75396837112d2060b03f7d43bc1897c7f7211da"
+
+[[package]]
+name = "flash_loan_cpi_interface"
+version = "0.2.2"
+dependencies = [
+ "anchor-lang",
+ "solana-program",
+ "spl-token-lending",
+]
 
 [[package]]
 name = "flashaggregator"
