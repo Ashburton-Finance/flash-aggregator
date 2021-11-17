@@ -20,6 +20,10 @@ describe('flashaggregator', () => {
   // Create an account keypair for our program to use.
   const baseAccount = anchor.web3.Keypair.generate();
 
+
+  // Provide some sols for the program to initilise space
+  provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
+
   it('initialise and check current flash fee', async () => {
     // Add your test here.
 
