@@ -474,8 +474,6 @@ name = "flashaggregator"
 version = "0.1.0"
 dependencies = [
  "anchor-lang",
- "solana-program",
- "spl-token-lending",
 ]
 
 [[package]]
