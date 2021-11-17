@@ -44,6 +44,8 @@ pub mod flashaggregator_module {
      * @param data Arbitrary data structure, intended to contain user-defined parameters.
      */
     pub fn flash_loan<'info>(ctx: Context<FlashLoan>, amount: u64) -> ProgramResult {
+        // ref: https://github.com/solana-labs/solana-program-library/blob/master/token-lending/program/tests/flash_loan.rs
+        // Use this api as reference: https://github.com/ilmoi/token_lending_cli/blob/master/js/cli/main.ts
         Ok(())
     }
 }
