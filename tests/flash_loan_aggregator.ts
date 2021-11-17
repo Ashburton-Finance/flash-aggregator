@@ -1,12 +1,12 @@
 import * as anchor from '@project-serum/anchor';
 import { Program } from '@project-serum/anchor';
-import { FlashaggregatorModule } from '../target/types/flashaggregator_module';
+import { Flashaggregator } from '../target/types/flashaggregator';
 import { assert, expect, use as chaiUse } from "chai";
 
 // Need the system program, will talk about this soon.
 const { SystemProgram } = anchor.web3;
 
-describe('flashaggregator_module', () => {
+describe('flashaggregator', () => {
 
   console.log("🚀 Starting test...")
 
@@ -16,7 +16,7 @@ describe('flashaggregator_module', () => {
 
 
 
-  const program = anchor.workspace.FlashaggregatorModule as Program<FlashaggregatorModule>;
+  const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
   // Create an account keypair for our program to use.
   const baseAccount = anchor.web3.Keypair.generate();
 
