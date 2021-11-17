@@ -60,15 +60,15 @@ describe('flashaggregator', () => {
 
 
 
-  it('take flash loan run test', async () => {
-    // Add your test here.
-    const tx = await program.rpc.flashLoanWrapper(
-      {
+  // it('take flash loan run test', async () => {
+  //   // Add your test here.
+  //   const tx = await program.rpc.flashLoanWrapper(
+  //     {
 
-      }
-    );
-    console.log("Your transaction signature", tx);
-  });
+  //     }
+  //   );
+  //   console.log("Your transaction signature", tx);
+  // });
 
 
 });
