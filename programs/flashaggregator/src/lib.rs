@@ -1,3 +1,7 @@
+/**
+ * We use a EIP-3156 style interface to borrow via this program. Refer to EIP-3234 for more
+ * ideas for batch flash loans
+ */
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
