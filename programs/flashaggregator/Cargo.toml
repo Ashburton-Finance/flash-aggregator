@@ -1,12 +1,12 @@
 [package]
-name = "flashaggregator"
+name = "flashaggregator_module"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "flashaggregator"
+name = "flashaggregator_module"
 
 [features]
 no-entrypoint = []
