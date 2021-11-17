@@ -14,7 +14,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 #[program]
 pub mod flashaggregator {
     use super::*;
-    use cpi::{deposit_reserve_liquidity, flash_loan, DepositReserveLiquidity, FlashLoan};
+    use cpi::{flash_loan, FlashLoan};
 
     pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
         let base_account = &mut ctx.accounts.base_account;
