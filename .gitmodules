@@ -1,0 +1,3 @@
+[submodule "programs/anchor-lending"]
+	path = programs/anchor-lending
+	url = https://github.com/RohanKapurDEV/anchor-lending.git
