@@ -30,6 +30,7 @@ describe('flashaggregator', () => {
   const baseAccount = anchor.web3.Keypair.generate();
 
 
+
   // Provide some sols for the program to initilise space
   provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
 
@@ -76,10 +77,28 @@ describe('flashaggregator', () => {
 
 
     // Add your test here.
-    const tx = await program.rpc.flashLoanWrapper(
+    let FLASH_LOAN_PROGRAM_ID = new anchor.web3.PublicKey("Eiy9gzpAcjQiav3q4QQNLFxRqCVFXiPboVwLSDS19UFc");
 
+    console.log(`baseAccount.publicKey (${baseAccount.publicKey})`);
+
+    const tx = await program.rpc.flashLoanWrapper(
       {
-      }
+        accounts: {
+          userAuthority: provider.wallet.publicKey,//
+          lendingProgram: new anchor.web3.PublicKey("8qdJZwaeDUPFGdbriVhhHhyNPFvE8tYjvYL7pBWS9pmM"),//
+          sourceLiquidity: new anchor.web3.PublicKey("AymV6E6B9gPGvZAUAB9oGjMX3vMfkT1xc2H1hhyvMX3s"),//
+          destinationLiquidity: new anchor.web3.PublicKey("4GHHy8SPhbWYRdn3pWZ9cicawUE7he7L2HbPkyE2qtGs"),//
+          reserve: new anchor.web3.PublicKey("BJm1JzdcwBmD1XgN4pSUHW1FPDqxrGSjs65p4DQTAsPH"),//
+          flashLoanFeeReceiver: new anchor.web3.PublicKey("48bKZ4DLy9nHPJsgSseiw8w8DQK4ULTu4Pdr1s1aGu5x"),
+          hostFeeReceiver: new anchor.web3.PublicKey("BBNqBhrMJmixfzZie21Li3p7SJFUgw9RYqhDZ8vkJAKi"),
+          lendingMarket: new anchor.web3.PublicKey("EF2b7tUe8SWAidRLwbCWtnSrfZkBqPZ3GxrCg1Rnu2FN"),
+          derivedLendingMarketAuthority: new anchor.web3.PublicKey("2G66s9pmDwrgKzrbfiK485uUoN6nHNigZmcbC7NMfAvM"),
+          tokenProgramId: TOKEN_PROGRAM_ID,//
+          flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,//
+        },
+        signers: [baseAccount],
+      },
+
     );
     console.log("Your transaction signature", tx);
   });
