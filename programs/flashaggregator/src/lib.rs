@@ -84,9 +84,6 @@ pub mod flashaggregator {
 
 #[derive(Accounts)]
 pub struct FlashLoanWrapper<'info> {
-    // AccountInfo of the account that calls the ix
-    #[account(signer)]
-    pub user_authority: AccountInfo<'info>,
     // Lending program
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
@@ -116,6 +113,7 @@ pub struct FlashLoanWrapper<'info> {
     // RECEIVER'S FLASHLOAN INSTRUCTION
 
     // transfer_authority
+    #[account(signer)]
     pub transfer_authority: AccountInfo<'info>,
 }
 
