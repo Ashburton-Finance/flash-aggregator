@@ -21,7 +21,7 @@ pub fn flash_loan<'info>(
         *ctx.accounts.lending_program.key,
         amount,
         *ctx.accounts.source_liquidity.key,
-        *ctx.accounts.destination_liquidity.key,
+        *ctx.accounts.destination_liquidity.key, // needs to be owned by transfer_authority
         *ctx.accounts.reserve.key,
         *ctx.accounts.flash_loan_fee_receiver.key,
         *ctx.accounts.host_fee_receiver.key,
@@ -79,7 +79,7 @@ pub struct FlashLoan<'info> {
     // Source liquidity token account
     pub source_liquidity: AccountInfo<'info>,
     // Destination liquidity token account - same mint as source liquidity
-    pub destination_liquidity: AccountInfo<'info>,
+    pub destination_liquidity: AccountInfo<'info>, // must be owned by transfer authority
     // Reserve account
     pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
