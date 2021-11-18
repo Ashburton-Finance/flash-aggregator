@@ -72,6 +72,9 @@ describe('flashaggregator', () => {
   it('take flash loan run test', async () => {
 
     // ref: use the escrow account as example for building proper request: https://github.com/project-serum/anchor/blob/master/tests/escrow/tests/escrow.ts
+    // Use this api as reference: https://github.com/ilmoi/token_lending_cli/blob/master/js/cli/main.ts
+
+
     // Add your test here.
     const tx = await program.rpc.flashLoanWrapper(
 
