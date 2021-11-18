@@ -69,17 +69,15 @@ pub mod flashaggregator {
         let user_authority = ctx.accounts.user_authority.clone();
         let reserve = ctx.accounts.reserve.clone();
 
-        let pda_seeds = &[
-            &user_authority.key.to_bytes()[..32],
-            &reserve.key.to_bytes()[..32],
-            &[79],
-        ];
-        let pda_signer = &[&pda_seeds[..]];
-        let cpi_ctx = CpiContext::new_with_signer(
-            ctx.accounts.lending_program.clone(),
-            cpi_accounts,
-            pda_signer,
+        let (_, seed) = Pubkey::find_program_address(
+            &[&ctx.accounts.flask_loan_receiver.key.to_bytes()], // TODO: find if its safe to use this key for the seed
+            &ctx.program_id,
         );
+        let seeds = &[ctx.accounts.flask_loan_receiver.key.as_ref(), &[seed]];
+        let signer = &[&seeds[..]];
+
+        let cpi_ctx =
+            CpiContext::new_with_signer(ctx.accounts.lending_program.clone(), cpi_accounts, signer);
         flash_loan(cpi_ctx, 5)?;
         Ok(())
     }
