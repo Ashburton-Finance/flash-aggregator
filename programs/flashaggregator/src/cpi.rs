@@ -10,11 +10,9 @@ pub fn flash_loan<'info>(
 ) -> ProgramResult {
     let mut receiver_accounts: Vec<AccountMeta> = Vec::new();
 
-    receiver_accounts.push(account_info_to_meta(
-        ctx.accounts.transfer_authority,
-        false,
-        true,
-    ));
+    let meta = account_info_to_meta(ctx.accounts.transfer_authority.clone(), true, false);
+
+    receiver_accounts.push(meta);
 
     // Write logic to form AccountMeta for all receiver accounts and
     // push into receiver_accounts,
