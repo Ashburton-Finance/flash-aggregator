@@ -8,7 +8,13 @@ pub fn flash_loan<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, FlashLoan<'info>>,
     amount: u64,
 ) -> ProgramResult {
-    let receiver_accounts: Vec<AccountMeta> = Vec::new();
+    let mut receiver_accounts: Vec<AccountMeta> = Vec::new();
+
+    receiver_accounts.push(account_info_to_meta(
+        ctx.accounts.transfer_authority,
+        false,
+        true,
+    ));
 
     // Write logic to form AccountMeta for all receiver accounts and
     // push into receiver_accounts,
@@ -90,6 +96,23 @@ pub struct FlashLoan<'info> {
     pub token_program_id: AccountInfo<'info>,
     // Flash loan program receiver ID
     pub flask_loan_receiver: AccountInfo<'info>,
+
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
+
+    // transfer_authority
+    pub transfer_authority: AccountInfo<'info>,
+}
+
+// Helper function to convert AccountInfo to AccountMeta
+pub fn account_info_to_meta<'info>(
+    acct: AccountInfo<'info>,
+    is_signer: bool,
+    is_writable: bool,
+) -> AccountMeta {
+    AccountMeta {
+        pubkey: *acct.key,
+        is_signer: is_signer,
+        is_writable: is_writable,
+    }
 }

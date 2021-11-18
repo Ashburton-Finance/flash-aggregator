@@ -142,6 +142,7 @@ describe('flashaggregator', () => {
           derivedLendingMarketAuthority: new anchor.web3.PublicKey("2G66s9pmDwrgKzrbfiK485uUoN6nHNigZmcbC7NMfAvM"),
           tokenProgramId: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
           flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,//
+          TransferAuthority: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
         },
         signers: [baseAccount],
       },

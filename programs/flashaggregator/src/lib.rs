@@ -64,6 +64,7 @@ pub mod flashaggregator {
             derived_lending_market_authority: ctx.accounts.derived_lending_market_authority.clone(),
             token_program_id: ctx.accounts.token_program_id.clone(),
             flask_loan_receiver: ctx.accounts.flask_loan_receiver.clone(),
+            transfer_authority: ctx.accounts.transfer_authority.clone(),
         };
 
         let (_, seed) = Pubkey::find_program_address(
@@ -113,6 +114,9 @@ pub struct FlashLoanWrapper<'info> {
     pub flask_loan_receiver: AccountInfo<'info>,
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
+
+    // transfer_authority
+    pub transfer_authority: AccountInfo<'info>,
 }
 
 // ref: https://github.com/patriciobcs/solask/blob/master/programs/solask/src/lib.rs
