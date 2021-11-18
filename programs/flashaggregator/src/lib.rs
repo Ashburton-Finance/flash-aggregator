@@ -75,6 +75,7 @@ pub mod flashaggregator {
 
         let cpi_ctx =
             CpiContext::new_with_signer(ctx.accounts.lending_program.clone(), cpi_accounts, signer);
+
         flash_loan(cpi_ctx, 5)?;
         Ok(())
     }
@@ -88,14 +89,19 @@ pub struct FlashLoanWrapper<'info> {
     // Lending program
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
+    #[account(mut)]
     pub source_liquidity: AccountInfo<'info>,
     // Destination liquidity token account - same mint as source liquidity
+    #[account(mut)]
     pub destination_liquidity: AccountInfo<'info>,
     // Reserve account
+    #[account(mut)]
     pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
+    #[account(mut)]
     pub flash_loan_fee_receiver: AccountInfo<'info>,
     // Host fee receiver
+    #[account(mut)]
     pub host_fee_receiver: AccountInfo<'info>,
     // Lending market account
     pub lending_market: AccountInfo<'info>,
