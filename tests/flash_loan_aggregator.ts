@@ -2,6 +2,15 @@ import * as anchor from '@project-serum/anchor';
 import { Program, BN, IdlAccounts } from "@project-serum/anchor";
 import { Flashaggregator } from '../target/types/flashaggregator';
 import { assert, expect, use as chaiUse } from "chai";
+import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
+
+import {
+  Connection,
+  Keypair, LAMPORTS_PER_SOL,
+  PublicKey,
+  sendAndConfirmTransaction, Signer,
+  Transaction, TransactionInstruction,
+} from '@solana/web3.js';
 
 // Need the system program, will talk about this soon.
 const { SystemProgram } = anchor.web3;
