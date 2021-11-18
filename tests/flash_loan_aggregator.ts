@@ -1,5 +1,5 @@
 import * as anchor from '@project-serum/anchor';
-import { Program } from '@project-serum/anchor';
+import { Program, BN, IdlAccounts } from "@project-serum/anchor";
 import { Flashaggregator } from '../target/types/flashaggregator';
 import { assert, expect, use as chaiUse } from "chai";
 
@@ -9,6 +9,8 @@ const { SystemProgram } = anchor.web3;
 describe('flashaggregator', () => {
 
   console.log("🚀 Starting test...")
+
+  const Amount = 500;
 
   // Configure the client to use the local cluster.
   const provider = anchor.Provider.env();
@@ -60,15 +62,19 @@ describe('flashaggregator', () => {
 
 
 
-  // it('take flash loan run test', async () => {
-  //   // Add your test here.
-  //   const tx = await program.rpc.flashLoanWrapper(
-  //     {
+  it('take flash loan run test', async () => {
 
-  //     }
-  //   );
-  //   console.log("Your transaction signature", tx);
-  // });
+    // ref: use the escrow account as example for building proper request: https://github.com/project-serum/anchor/blob/master/tests/escrow/tests/escrow.ts
+    // Add your test here.
+    const tx = await program.rpc.flashLoanWrapper(
+
+      new BN(Amount),
+      new BN(12),
+      {
+      }
+    );
+    console.log("Your transaction signature", tx);
+  });
 
 
 });
