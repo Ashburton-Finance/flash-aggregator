@@ -75,8 +75,6 @@ describe('flashaggregator', () => {
     // Add your test here.
     const tx = await program.rpc.flashLoanWrapper(
 
-      new BN(Amount),
-      new BN(12),
       {
       }
     );

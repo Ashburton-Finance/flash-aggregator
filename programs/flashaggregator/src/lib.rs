@@ -49,11 +49,7 @@ pub mod flashaggregator {
      * @param amount The amount of tokens lent.
      * @param data Arbitrary data structure, intended to contain user-defined parameters.
      */
-    pub fn flash_loan_wrapper<'info>(
-        ctx: Context<FlashLoanWrapper>,
-        amount: u64,
-        nonce: u8,
-    ) -> ProgramResult {
+    pub fn flash_loan_wrapper<'info>(ctx: Context<FlashLoanWrapper>) -> ProgramResult {
         // ref: https://github.com/solana-labs/solana-program-library/blob/master/token-lending/program/tests/flash_loan.rs
         // Use this api as reference: https://github.com/ilmoi/token_lending_cli/blob/master/js/cli/main.ts
 
@@ -77,7 +73,7 @@ pub mod flashaggregator {
         let pda_seeds = &[
             &user_authority.key.to_bytes()[..32],
             &reserve.key.to_bytes()[..32],
-            &[nonce],
+            &[7],
         ];
         let pda_signer = &[&pda_seeds[..]];
         let cpi_ctx = CpiContext::new_with_signer(
@@ -85,7 +81,7 @@ pub mod flashaggregator {
             cpi_accounts,
             pda_signer,
         );
-        flash_loan(cpi_ctx, amount)?;
+        flash_loan(cpi_ctx, 5)?;
         Ok(())
     }
 }
