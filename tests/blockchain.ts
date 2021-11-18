@@ -503,47 +503,19 @@ export class Blockchain {
       token.reserveKp.publicKey,
       token.pythPricePk,
     );
-
-    console.log(`liquidityAmount (${liquidityAmount})`);
-    console.log(`token.protocolKp.publicKey (${token.protocolKp.publicKey})`);
-    console.log(`token.userPk (${token.userPk})`);
-    console.log(`token.reserveKp.publicKey (${token.reserveKp.publicKey})`);
-    console.log(`token.protocolFeeKp.publicKey (${token.protocolFeeKp.publicKey})`);
-    console.log(`token.hostPk (${token.hostPk})`);
-
-    console.log(`this.lendingMarketKp.publicKey (${this.lendingMarketKp.publicKey})`);
-    console.log(`this.lendingMarketAuthority (${this.lendingMarketAuthority})`);
-    console.log(`this.FLASH_LOAN_PROGRAM_ID (${this.FLASH_LOAN_PROGRAM_ID})`);
-    console.log(`this.ownerKp.publicKey (${this.ownerKp.publicKey})`);
-
-    const borrowFlashLoanIx = borrowFlashLoanInstruction(
-      liquidityAmount,
-      token.protocolKp.publicKey,
-      token.userPk,
-      token.reserveKp.publicKey,
-      token.protocolFeeKp.publicKey,
-      token.hostPk,
-      this.lendingMarketKp.publicKey,
-      this.lendingMarketAuthority,
-      this.FLASH_LOAN_PROGRAM_ID,
-      this.ownerKp.publicKey,
-    )
     await this._prepareAndSendTx(
-      [refreshReserveIx, borrowFlashLoanIx],
+      [refreshReserveIx],
       [this.ownerKp],
     );
+
+    /**
+     * Take flash loan using the CPI
+     */
     const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
-
-
-    // Add your test here.
-    let FLASH_LOAN_PROGRAM_ID = new anchor.web3.PublicKey("4Hz4EjqhCeeHdx2u36NnuWC83tXidzrrwr1858VFJN8s");
-
-    console.log(`baseAccount.publicKey (${this.ownerKp.publicKey})`);
-
     const tx = await program.rpc.flashLoanWrapper(
       {
         accounts: {
-          lendingProgram: new anchor.web3.PublicKey("8qdJZwaeDUPFGdbriVhhHhyNPFvE8tYjvYL7pBWS9pmM"),//
+          lendingProgram: LENDING_PROGRAM_ID,
           sourceLiquidity: token.protocolKp.publicKey,
           destinationLiquidity: token.userPk,
           reserve: token.reserveKp.publicKey,
@@ -551,8 +523,8 @@ export class Blockchain {
           hostFeeReceiver: token.hostPk,
           lendingMarket: this.lendingMarketKp.publicKey,
           derivedLendingMarketAuthority: this.lendingMarketAuthority,
-          tokenProgramId: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
-          flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,
+          tokenProgramId: TOKEN_PROGRAM_ID,
+          flaskLoanReceiver: this.FLASH_LOAN_PROGRAM_ID,
           transferAuthority: this.ownerKp.publicKey,
         },
         signers: [this.ownerKp],
