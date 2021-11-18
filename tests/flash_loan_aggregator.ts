@@ -131,7 +131,6 @@ describe('flashaggregator', () => {
     const tx = await program.rpc.flashLoanWrapper(
       {
         accounts: {
-          userAuthority: baseAccount.publicKey,//
           lendingProgram: new anchor.web3.PublicKey("8qdJZwaeDUPFGdbriVhhHhyNPFvE8tYjvYL7pBWS9pmM"),//
           sourceLiquidity: new anchor.web3.PublicKey("AymV6E6B9gPGvZAUAB9oGjMX3vMfkT1xc2H1hhyvMX3s"),//
           destinationLiquidity: new anchor.web3.PublicKey("4GHHy8SPhbWYRdn3pWZ9cicawUE7he7L2HbPkyE2qtGs"),//
@@ -142,7 +141,7 @@ describe('flashaggregator', () => {
           derivedLendingMarketAuthority: new anchor.web3.PublicKey("2G66s9pmDwrgKzrbfiK485uUoN6nHNigZmcbC7NMfAvM"),
           tokenProgramId: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
           flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,//
-          TransferAuthority: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
+          transferAuthority: baseAccount.publicKey,//
         },
         signers: [baseAccount],
       },
