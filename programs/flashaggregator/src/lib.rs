@@ -72,7 +72,7 @@ pub mod flashaggregator {
         let pda_seeds = &[
             &user_authority.key.to_bytes()[..32],
             &reserve.key.to_bytes()[..32],
-            &[7],
+            &[79],
         ];
         let pda_signer = &[&pda_seeds[..]];
         let cpi_ctx = CpiContext::new_with_signer(
