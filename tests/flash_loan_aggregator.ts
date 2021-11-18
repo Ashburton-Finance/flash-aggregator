@@ -77,7 +77,7 @@ describe('flashaggregator', () => {
 
 
     // Add your test here.
-    let FLASH_LOAN_PROGRAM_ID = new anchor.web3.PublicKey("Eiy9gzpAcjQiav3q4QQNLFxRqCVFXiPboVwLSDS19UFc");
+    let FLASH_LOAN_PROGRAM_ID = new anchor.web3.PublicKey("4Hz4EjqhCeeHdx2u36NnuWC83tXidzrrwr1858VFJN8s");
 
     console.log(`baseAccount.publicKey (${baseAccount.publicKey})`);
 
@@ -93,7 +93,7 @@ describe('flashaggregator', () => {
           hostFeeReceiver: new anchor.web3.PublicKey("BBNqBhrMJmixfzZie21Li3p7SJFUgw9RYqhDZ8vkJAKi"),
           lendingMarket: new anchor.web3.PublicKey("EF2b7tUe8SWAidRLwbCWtnSrfZkBqPZ3GxrCg1Rnu2FN"),
           derivedLendingMarketAuthority: new anchor.web3.PublicKey("2G66s9pmDwrgKzrbfiK485uUoN6nHNigZmcbC7NMfAvM"),
-          tokenProgramId: TOKEN_PROGRAM_ID,//
+          tokenProgramId: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
           flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,//
         },
         signers: [baseAccount],
