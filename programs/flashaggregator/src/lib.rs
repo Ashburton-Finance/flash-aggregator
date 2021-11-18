@@ -66,9 +66,6 @@ pub mod flashaggregator {
             flask_loan_receiver: ctx.accounts.flask_loan_receiver.clone(),
         };
 
-        let user_authority = ctx.accounts.user_authority.clone();
-        let reserve = ctx.accounts.reserve.clone();
-
         let (_, seed) = Pubkey::find_program_address(
             &[&ctx.accounts.flask_loan_receiver.key.to_bytes()], // TODO: find if its safe to use this key for the seed
             &ctx.program_id,
