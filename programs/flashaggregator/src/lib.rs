@@ -86,7 +86,6 @@ pub mod flashaggregator {
 }
 
 #[derive(Accounts)]
-#[instruction(nonce: u8, liquidity_amount: u64, _bump: u8)]
 pub struct FlashLoanWrapper<'info> {
     // AccountInfo of the account that calls the ix
     #[account(signer)]
