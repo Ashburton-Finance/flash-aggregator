@@ -37,6 +37,12 @@ import {
 import { borrowFlashLoanInstruction } from './src/instructions/borrowFlashLoan';
 import { newAccountWithLamports } from './util';
 
+import { Program, BN, IdlAccounts } from "@project-serum/anchor";
+
+import { Flashaggregator } from '../target/types/flashaggregator';
+import * as anchor from '@project-serum/anchor';
+
+
 // ============================================================================= bc class
 
 interface IToken {
@@ -526,6 +532,34 @@ export class Blockchain {
       [refreshReserveIx, borrowFlashLoanIx],
       [this.ownerKp],
     );
+    const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
+
+
+    // Add your test here.
+    let FLASH_LOAN_PROGRAM_ID = new anchor.web3.PublicKey("4Hz4EjqhCeeHdx2u36NnuWC83tXidzrrwr1858VFJN8s");
+
+    console.log(`baseAccount.publicKey (${this.ownerKp.publicKey})`);
+
+    const tx = await program.rpc.flashLoanWrapper(
+      {
+        accounts: {
+          lendingProgram: new anchor.web3.PublicKey("8qdJZwaeDUPFGdbriVhhHhyNPFvE8tYjvYL7pBWS9pmM"),//
+          sourceLiquidity: token.protocolKp.publicKey,
+          destinationLiquidity: token.userPk,
+          reserve: token.reserveKp.publicKey,
+          flashLoanFeeReceiver: token.protocolFeeKp.publicKey,
+          hostFeeReceiver: token.hostPk,
+          lendingMarket: this.lendingMarketKp.publicKey,
+          derivedLendingMarketAuthority: this.lendingMarketAuthority,
+          tokenProgramId: new anchor.web3.PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),//
+          flaskLoanReceiver: FLASH_LOAN_PROGRAM_ID,
+          transferAuthority: this.ownerKp.publicKey,
+        },
+        signers: [this.ownerKp],
+      },
+
+    );
+    console.log("Your transaction signature", tx);
   }
 
   // --------------------------------------- helpers

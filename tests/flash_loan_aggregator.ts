@@ -20,8 +20,6 @@ describe('flashaggregator', () => {
 
   console.log("🚀 Starting test...")
 
-  const Amount = 500;
-
   // Configure the client to use the local cluster.
   const provider = anchor.Provider.env();
   anchor.setProvider(provider);
@@ -34,10 +32,10 @@ describe('flashaggregator', () => {
 
 
 
-  // Provide some sols for the program to initilise space
-  provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
+  // // Provide some sols for the program to initilise space
+  // provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
 
-  it('initialise and check current flash fee', async () => {
+  it.skip('initialise and check current flash fee', async () => {
     // Add your test here.
 
     // Call start_stuff_off, pass it the params it needs!
@@ -65,7 +63,7 @@ describe('flashaggregator', () => {
 
   });
 
-  it('maxflashloan run test', async () => {
+  it.skip('maxflashloan run test', async () => {
     // Add your test here.
     const tx = await program.rpc.maxflashloan({});
     console.log("Your transaction signature", tx);
@@ -119,7 +117,7 @@ describe('flashaggregator', () => {
   });
 
 
-  it('take flash loan run test', async () => {
+  it.skip('take flash loan run test', async () => {
 
     // ref: use the escrow account as example for building proper request: https://github.com/project-serum/anchor/blob/master/tests/escrow/tests/escrow.ts
     // Use this api as reference: https://github.com/ilmoi/token_lending_cli/blob/master/js/cli/main.ts
