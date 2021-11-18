@@ -5,7 +5,7 @@ With a single api call, any smart contract can flash borrow from the combined ho
 Applications for flash loans are:
 1. Arbitrage
 2. debt refinancing
-3. Source of funds for liqudations
+3. Source of funds for liquidations
 4. many more undiscovered applications
 
 # Method of operation
