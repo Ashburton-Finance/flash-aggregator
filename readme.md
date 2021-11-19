@@ -55,3 +55,37 @@ Run unittests
 ```bash
 cargo test
 ```
+
+
+### Useful debugging tools
+
+Find program data length
+```shell
+
+solana program show GT2jZnYzjMkv4uufjPHpRStKmQKQEt5oJYHmCAcFXb4M
+
+# Program Id: GT2jZnYzjMkv4uufjPHpRStKmQKQEt5oJYHmCAcFXb4M
+# Owner: BPFLoaderUpgradeab1e11111111111111111111111
+# ProgramData Address: 6VxqZdhHGQqs8eBEjdCgc4H8M4HUQxWtdSHcnt1HMa65
+# Authority: 711gc5iRvrUCjd17VeDdJkcqm7wbe71fMfNGRNCWFukt
+# Last Deployed In Slot: 95293605
+# Data Length: 437280 (0x6ac20) bytes
+# Balance: 3.04467288 SOL
+```
+
+Calculate rent
+```shell
+
+solana rent 437280
+
+# Rent per byte-year: 0.00000348 SOL
+# Rent per epoch: 0.00833518 SOL
+# Rent-exempt minimum: 3.04435968 SOL
+
+```
+
+
+Do a dump of the elf file
+```shell
+cargo build-bpf --dump
+```
