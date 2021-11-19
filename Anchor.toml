@@ -1,11 +1,11 @@
-[programs.localnet]
-flashaggregator = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+[programs.devnet]
+flashaggregator = "BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/medad/.config/solana/id.json"
 
 [scripts]

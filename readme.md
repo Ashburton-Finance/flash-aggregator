@@ -13,10 +13,37 @@ When a borrower requests for a certain amount of funds, the aggregator flash bor
 
 The borrower must return the principle along with the fee in order for the transaction to succeed.
 
+# Getting a unique id for your program
+
+run `anchor test` first. This will generate a key pair for you. Then run:
+```
+solana address -k target/deploy/flashaggregator-keypair.json 
+
+# BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ
+```
+
+Now in `programs/flashaggregator/src/lib.rs` and `Anchor.toml` change `your-program-id` to the address you got in the previous step.
+```
+// programs/flashaggregator/src/lib.rs
+
+declare_id!("your-program-id");
+```
+
+```
+# Anchor.toml
+
+[programs.devnet]
+flashaggregator = "your-program-id"
+```
+
+
+
+Then in BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ
+
 # Running tests
 
 
-Run integration tests
+Run integration tests directly on devnet, in order to interact with the existing on chain programs.
 
 ```bash
 anchor test
