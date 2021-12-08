@@ -38,9 +38,6 @@ flashaggregator = "your-program-id"
 ```
 
 
-
-Then in BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ
-
 # Running tests
 
 
