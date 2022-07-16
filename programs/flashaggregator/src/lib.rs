@@ -5,9 +5,7 @@
 pub mod cpi;
 
 use anchor_lang::prelude::*;
-use anchor_spl::token::{Mint, Token, TokenAccount};
 
-use anchor_lang::prelude::*;
 
 declare_id!("BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ");
 
