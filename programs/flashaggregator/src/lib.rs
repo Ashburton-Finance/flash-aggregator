@@ -5,6 +5,7 @@
 pub mod cpi;
 
 use anchor_lang::prelude::*;
+use solana_program::entrypoint::ProgramResult;
 
 
 declare_id!("BnN9NvW3EBScQpxvVa6yVBSjWhiu7XamZbLPVuyY9WnQ");
