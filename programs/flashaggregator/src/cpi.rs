@@ -1,7 +1,8 @@
 // use anchor_lang::solana_program;
+use anchor_lang::context::CpiContext;
 use anchor_lang::solana_program::account_info::AccountInfo;
 use anchor_lang::solana_program::entrypoint::ProgramResult;
-use anchor_lang::{Accounts, CpiContext, ToAccountInfos};
+use anchor_lang::{Accounts, ToAccountInfos};
 use solana_program::instruction::AccountMeta;
 
 pub fn flash_loan<'info>(
