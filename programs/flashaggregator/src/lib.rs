@@ -15,9 +15,6 @@ pub mod flashaggregator {
     use cpi::{flash_loan, FlashLoan};
 
     pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.flash_fee = 23;
-        base_account.max_flash_loan = 2342;
         Ok(())
     }
 
@@ -123,15 +120,6 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-#[account]
-#[derive(Default)] // todo: is this necessary?
-pub struct BaseAccount {
-    pub flash_fee: u64,
-    pub max_flash_loan: u64,
-}
-
 #[derive(Accounts)]
 pub struct MaxFlashLoan {}
 
-#[derive(Accounts)]
-pub struct FlashFee {}
