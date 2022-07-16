@@ -28,17 +28,17 @@ pub mod flashaggregator {
      * @return The amount of `token` that can be borrowed.
      */
     pub fn maxflashloan(ctx: Context<MaxFlashLoan>) -> ProgramResult {
-        Ok(())
+        unimplemented!("Get Max flash loan not implemented");
     }
 
     /**
-     * @dev The fee to be charged for a given loan.
+     * @dev Get the fee to be charged for a given loan.
      * @param token The loan currency.
      * @param amount The amount of tokens lent.
      * @return The amount of `token` to be charged for the loan, on top of the returned principal.
      */
     pub fn flashfee(ctx: Context<FlashFee>, amount: u64) -> ProgramResult {
-        Ok(())
+        unimplemented!("Get flash fee for given amount not implemented");
     }
 
     /**
