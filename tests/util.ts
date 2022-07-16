@@ -12,7 +12,7 @@ export async function newAccountWithLamports(
   lamports: number = 1000000,
 ): Promise<Keypair> {
   const account = new Keypair();
-  await requestAirdrop(connection, lamports, account);
+  await requestAirdrop1(connection, lamports, account);
   return account;
 }
 
@@ -20,7 +20,7 @@ export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function requestAirdrop(connection: Connection, lamports: number, account: Keypair) {
+export async function requestAirdrop1(connection: Connection, lamports: number, account: Keypair) {
   //new restriction of max 5 sol
   if (lamports > LAMPORTS_PER_SOL * 1) {
     lamports = LAMPORTS_PER_SOL * 1

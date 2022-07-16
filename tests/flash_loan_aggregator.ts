@@ -1,13 +1,12 @@
 import * as anchor from '@project-serum/anchor';
 import { Program, BN, IdlAccounts } from "@project-serum/anchor";
 import { Flashaggregator } from '../target/types/flashaggregator';
-import { assert, expect, use as chaiUse } from "chai";
+import { assert, use as chaiUse } from "chai";
 import {
-  AccountLayout,
-  MintLayout,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+  Connection,
+} from '@solana/web3.js';
+import { requestAirdrop1 } from './util';
+
 
 
 import { Blockchain } from './blockchain';
@@ -44,8 +43,21 @@ describe('flashaggregator', () => {
 
   it('Borrow flash loan from Solend on behalf of caller', async () => {
 
-    const bc = new Blockchain();
-    await bc.getConnection();
+
+
+    // --------------------------------------- connection
+
+    const url = 'https://api.devnet.solana.com';
+
+    const connection = new Connection(url, 'recent');
+    const version = await connection.getVersion();
+    console.log('connection to cluster established:', url, version);
+
+
+    // Provide some sols for the program to initilise space
+    await requestAirdrop1(connection, 1000000000, baseAccount);
+
+    const bc = new Blockchain(connection);
     await bc.initLendingMarket();
     await bc.initReserve(bc.tokenA, 100, 40);
     await bc.initObligation();
