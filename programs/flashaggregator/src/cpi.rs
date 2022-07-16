@@ -76,6 +76,7 @@ pub fn flash_loan<'info>(
 #[derive(Accounts)]
 pub struct FlashLoan<'info> {
     // Lending program
+    /// CHECK: This is not dangerous because we don't read or write from this account
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
     pub source_liquidity: AccountInfo<'info>,
