@@ -15,9 +15,6 @@ pub mod flashaggregator {
     use cpi::{flash_loan, FlashLoan};
 
     pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.flash_fee = 23;
-        base_account.max_flash_loan = 2342;
         Ok(())
     }
 
@@ -31,21 +28,8 @@ pub mod flashaggregator {
     }
 
     /**
-     * @dev Get the fee to be charged for a given loan.
-     * @param token The loan currency.
-     * @param amount The amount of tokens lent.
-     * @return The amount of `token` to be charged for the loan, on top of the returned principal.
-     */
-    pub fn flashfee(ctx: Context<FlashFee>, amount: u64) -> ProgramResult {
-        unimplemented!("Get flash fee for given amount not implemented");
-    }
-
-    /**
-     * @dev Initiate a flash loan.
-     * @param receiver The receiver of the tokens in the loan, and the receiver of the callback.
-     * @param token The loan currency.
-     * @param amount The amount of tokens lent.
-     * @param data Arbitrary data structure, intended to contain user-defined parameters.
+     * Take a flash loan on behalf of the caller, drawing from Solend, Port Finance, starting with the cheapest flash loan fee
+     * until the requested amount has been borrowed. Then pass it to the caller's account.
      */
     pub fn flash_loan_wrapper<'info>(ctx: Context<FlashLoanWrapper>) -> ProgramResult {
         // ref: https://github.com/solana-labs/solana-program-library/blob/master/token-lending/program/tests/flash_loan.rs
@@ -137,14 +121,8 @@ pub struct Initialize<'info> {
 }
 
 #[account]
-#[derive(Default)] // todo: is this necessary?
-pub struct BaseAccount {
-    pub flash_fee: u64,
-    pub max_flash_loan: u64,
-}
+#[derive(Default)]
+pub struct BaseAccount {}
 
 #[derive(Accounts)]
 pub struct MaxFlashLoan {}
-
-#[derive(Accounts)]
-pub struct FlashFee {}

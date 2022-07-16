@@ -14,7 +14,7 @@ Applications for flash loans are:
 4. many more undiscovered applications
 
 # Method of operation
-When a borrower smart contract requests for a certain amount of funds, the flash aggregator borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
+When a borrower smart contract requests for a certain amount of funds, the flash aggregator smart contract borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
 
 The borrower must return the principle along with the fee in order for the transaction to succeed.
 
