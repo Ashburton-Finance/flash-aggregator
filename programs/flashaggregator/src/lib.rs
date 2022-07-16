@@ -59,7 +59,7 @@ pub mod flashaggregator {
         let cpi_ctx =
             CpiContext::new_with_signer(ctx.accounts.lending_program.clone(), cpi_accounts, signer);
 
-        let amount_to_borrow = 5; // TODO: make this a parameter that has to be passed into this function.
+        let amount_to_borrow = 1; // TODO: make this a parameter that has to be passed into this function.
         flash_loan(cpi_ctx, amount_to_borrow)?;
         Ok(())
     }
