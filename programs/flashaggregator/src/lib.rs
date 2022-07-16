@@ -120,5 +120,9 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
+#[account]
+#[derive(Default)]
+pub struct BaseAccount {}
+
 #[derive(Accounts)]
 pub struct MaxFlashLoan {}
