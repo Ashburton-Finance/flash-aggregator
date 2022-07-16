@@ -18,6 +18,8 @@ When a borrower requests for a certain amount of funds, the aggregator flash bor
 
 The borrower must return the principle along with the fee in order for the transaction to succeed.
 
+[![](https://mermaid.ink/img/pako:eNqtUk9rwyAU_yriaYM0bNcMCiMNI4ymbKY3oYi-NcLUzD4Ho_S7T5sEFtrDDvUgvt-_90SPVDoFtKAH-ApgJay02HthnrglcfXCo5a6FxbJS8kuwZV3FgY48ovl8gwUZF0zVm-aXbnZNu1fPu4FYRgjCGoDLuDAnn0TP7nfq7dtxdpd3bTk7uF-rhw7XclKnS5HqdtqPU9qHAJx3-CTIxvleZ4TjeBF5LDzLuy7VJtDYv47q3TB4uLxZhNfz5v1fy5faUYNeCO0ig96TFpOsQMDnBbxqOBDhE_klNtTlIZexTtWSqPztEAfIKMioGM_Vk71oBn_xACefgG-8LCp)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNqtUk9rwyAU_yriaYM0bNcMCiMNI4ymbKY3oYi-NcLUzD4Ho_S7T5sEFtrDDvUgvt-_90SPVDoFtKAH-ApgJay02HthnrglcfXCo5a6FxbJS8kuwZV3FgY48ovl8gwUZF0zVm-aXbnZNu1fPu4FYRgjCGoDLuDAnn0TP7nfq7dtxdpd3bTk7uF-rhw7XclKnS5HqdtqPU9qHAJx3-CTIxvleZ4TjeBF5LDzLuy7VJtDYv47q3TB4uLxZhNfz5v1fy5faUYNeCO0ig96TFpOsQMDnBbxqOBDhE_klNtTlIZexTtWSqPztEAfIKMioGM_Vk71oBn_xACefgG-8LCp)
+
 # Getting a unique id for your program
 
 run `anchor test` first. This will generate a key pair for you. Then run:
