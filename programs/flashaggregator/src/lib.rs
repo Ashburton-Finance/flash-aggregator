@@ -122,4 +122,3 @@ pub struct Initialize<'info> {
 
 #[derive(Accounts)]
 pub struct MaxFlashLoan {}
-
