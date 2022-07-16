@@ -84,35 +84,46 @@ pub mod flashaggregator {
 #[derive(Accounts)]
 pub struct FlashLoanWrapper<'info> {
     // Lending program
+    /// CHECK:
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
     #[account(mut)]
+    /// CHECK:
     pub source_liquidity: AccountInfo<'info>,
     // Destination liquidity token account - same mint as source liquidity
     #[account(mut)]
+    /// CHECK:
     pub destination_liquidity: AccountInfo<'info>,
     // Reserve account
     #[account(mut)]
+    /// CHECK:
     pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
     #[account(mut)]
+    /// CHECK:
     pub flash_loan_fee_receiver: AccountInfo<'info>,
     // Host fee receiver
     #[account(mut)]
+    /// CHECK:
     pub host_fee_receiver: AccountInfo<'info>,
     // Lending market account
+    /// CHECK:
     pub lending_market: AccountInfo<'info>,
     // Derived lending market authority - PDA
+    /// CHECK:
     pub derived_lending_market_authority: AccountInfo<'info>,
     // Token program ID
+    /// CHECK:
     pub token_program_id: AccountInfo<'info>,
     // Flash loan program receiver ID
+    /// CHECK:
     pub flask_loan_receiver: AccountInfo<'info>,
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
 
     // transfer_authority
     #[account(signer)]
+    /// CHECK:
     pub transfer_authority: AccountInfo<'info>,
 }
 
