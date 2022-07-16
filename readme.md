@@ -45,7 +45,11 @@ declare_id!("your-program-id");
 [programs.devnet]
 flashaggregator = "your-program-id"
 ```
+# Airdropping Sol
 
+```
+solana airdrop 1 8vbPKLTCWxR9wiPMhyDkUQMMGnmeCxPXtpxvLALbQN5m --url https://api.devnet.solana.com
+```
 
 # Running tests
 
