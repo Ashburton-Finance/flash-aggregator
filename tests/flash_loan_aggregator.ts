@@ -69,7 +69,7 @@ describe('flashaggregator', () => {
     console.log("Your transaction signature", tx);
   });
 
-  it('old @ilmoi run test with flash loan CPI', async () => {
+  it('Borrow flash loan from Solend on behalf of caller', async () => {
 
     const bc = new Blockchain();
     await bc.getConnection();
