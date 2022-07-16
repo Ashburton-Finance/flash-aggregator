@@ -36,8 +36,8 @@ describe('flashaggregator', () => {
   // provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
 
 
-  it.skip('maxflashloan run test', async () => {
-    // Add your test here.
+  it.skip('get maxflashloan run test', async () => {
+    // Not implemented yet
     const tx = await program.rpc.maxflashloan({});
     console.log("Your transaction signature", tx);
   });
