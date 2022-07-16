@@ -1,7 +1,8 @@
 // use anchor_lang::solana_program;
+use anchor_lang::context::CpiContext;
 use anchor_lang::solana_program::account_info::AccountInfo;
 use anchor_lang::solana_program::entrypoint::ProgramResult;
-use anchor_lang::{Accounts, CpiContext, ToAccountInfos};
+use anchor_lang::{Accounts, ToAccountInfos};
 use solana_program::instruction::AccountMeta;
 
 pub fn flash_loan<'info>(
@@ -75,30 +76,41 @@ pub fn flash_loan<'info>(
 #[derive(Accounts)]
 pub struct FlashLoan<'info> {
     // Lending program
+    /// CHECK:
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
+    /// CHECK:
     pub source_liquidity: AccountInfo<'info>,
     // Destination liquidity token account - same mint as source liquidity
+    /// CHECK:
     pub destination_liquidity: AccountInfo<'info>, // must be owned by transfer authority
     // Reserve account
+    /// CHECK:
     pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
+    /// CHECK:
     pub flash_loan_fee_receiver: AccountInfo<'info>,
     // Host fee receiver
+    /// CHECK:
     pub host_fee_receiver: AccountInfo<'info>,
     // Lending market account
+    /// CHECK:
     pub lending_market: AccountInfo<'info>,
     // Derived lending market authority - PDA
+    /// CHECK:
     pub derived_lending_market_authority: AccountInfo<'info>,
     // Token program ID
+    /// CHECK:
     pub token_program_id: AccountInfo<'info>,
     // Flash loan program receiver ID
+    /// CHECK:
     pub flask_loan_receiver: AccountInfo<'info>,
 
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
 
     // transfer_authority
+    /// CHECK:
     pub transfer_authority: AccountInfo<'info>,
 }
 
