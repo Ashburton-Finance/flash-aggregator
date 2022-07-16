@@ -19,7 +19,7 @@ pub mod flashaggregator {
     }
 
     /**
-     * @dev The amount of currency available to be lent.
+     * @dev Get the maximum amount of currency available to be lent from all the pools supported.
      * @param token The loan currency.
      * @return The amount of `token` that can be borrowed.
      */
