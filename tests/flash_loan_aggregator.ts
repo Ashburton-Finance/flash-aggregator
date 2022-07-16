@@ -31,8 +31,6 @@ describe('flashaggregator', () => {
 
 
 
-  // // Provide some sols for the program to initilise space
-  // provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
 
   it.skip('get maxflashloan run test', async () => {
     // Not implemented yet
