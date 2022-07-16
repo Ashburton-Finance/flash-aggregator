@@ -14,11 +14,12 @@ Applications for flash loans are:
 4. many more undiscovered applications
 
 # Method of operation
-When a borrower requests for a certain amount of funds, the aggregator flash borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
+When a borrower smart contract requests for a certain amount of funds, the flash aggregator borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
 
 The borrower must return the principle along with the fee in order for the transaction to succeed.
 
-[![](https://mermaid.ink/img/pako:eNqtUk9rwyAU_yriaYM0bNcMCiMNI4ymbKY3oYi-NcLUzD4Ho_S7T5sEFtrDDvUgvt-_90SPVDoFtKAH-ApgJay02HthnrglcfXCo5a6FxbJS8kuwZV3FgY48ovl8gwUZF0zVm-aXbnZNu1fPu4FYRgjCGoDLuDAnn0TP7nfq7dtxdpd3bTk7uF-rhw7XclKnS5HqdtqPU9qHAJx3-CTIxvleZ4TjeBF5LDzLuy7VJtDYv47q3TB4uLxZhNfz5v1fy5faUYNeCO0ig96TFpOsQMDnBbxqOBDhE_klNtTlIZexTtWSqPztEAfIKMioGM_Vk71oBn_xACefgG-8LCp)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNqtUk9rwyAU_yriaYM0bNcMCiMNI4ymbKY3oYi-NcLUzD4Ho_S7T5sEFtrDDvUgvt-_90SPVDoFtKAH-ApgJay02HthnrglcfXCo5a6FxbJS8kuwZV3FgY48ovl8gwUZF0zVm-aXbnZNu1fPu4FYRgjCGoDLuDAnn0TP7nfq7dtxdpd3bTk7uF-rhw7XclKnS5HqdtqPU9qHAJx3-CTIxvleZ4TjeBF5LDzLuy7VJtDYv47q3TB4uLxZhNfz5v1fy5faUYNeCO0ig96TFpOsQMDnBbxqOBDhE_klNtTlIZexTtWSqPztEAfIKMioGM_Vk71oBn_xACefgG-8LCp)
+## Borrowing sequence
+[![](https://mermaid.ink/img/pako:eNp9Uk1rwzAM_SvCpw2yP5CNwj6Pu_QaCKqtpGaJlcpyxyj973PSZIV21L4I8fTe00MHY9mRKU2kXaJg6c1jK9g_VgHyG1DUWz9gUHhhEf4mAYznet1nBLxyUEGr10NNh3FbY9sKtag8DX-MPXg-9_4jWRQeVqtLjhKscIz1IDxarX3Ys0X1HEpoSesTvmMMd8pfFArAnlPQ-xPzJV1WWMTK7D1GkDGLqOTmQVCGzQypwonlk5WA9zmCZbi49vkXU5w2tPOGkCJFGA1micliHCWaFBzA00ZWgLLxGdpSAZ3fJe-m9SBnxbrNfIrxKy5WbkZ1IyshTRJuxTV-U5iepEfv8pUcRsXKZA89VabMpaMGU6eVqcIxQ9OQrdK781nclA12kQqDSXn9E6wpVRItoPnSZtTxF73M7Wk)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp9Uk1rwzAM_SvCpw2yP5CNwj6Pu_QaCKqtpGaJlcpyxyj973PSZIV21L4I8fTe00MHY9mRKU2kXaJg6c1jK9g_VgHyG1DUWz9gUHhhEf4mAYznet1nBLxyUEGr10NNh3FbY9sKtag8DX-MPXg-9_4jWRQeVqtLjhKscIz1IDxarX3Ys0X1HEpoSesTvmMMd8pfFArAnlPQ-xPzJV1WWMTK7D1GkDGLqOTmQVCGzQypwonlk5WA9zmCZbi49vkXU5w2tPOGkCJFGA1micliHCWaFBzA00ZWgLLxGdpSAZ3fJe-m9SBnxbrNfIrxKy5WbkZ1IyshTRJuxTV-U5iepEfv8pUcRsXKZA89VabMpaMGU6eVqcIxQ9OQrdK781nclA12kQqDSXn9E6wpVRItoPnSZtTxF73M7Wk)
 
 # Getting a unique id for your program
 
