@@ -22,8 +22,8 @@ export function sleep(ms: number): Promise<void> {
 
 async function requestAirdrop(connection: Connection, lamports: number, account: Keypair) {
   //new restriction of max 5 sol
-  if (lamports > LAMPORTS_PER_SOL * 5) {
-    lamports = LAMPORTS_PER_SOL * 5
+  if (lamports > LAMPORTS_PER_SOL * 1) {
+    lamports = LAMPORTS_PER_SOL * 1
   }
 
   let retries = 30;
