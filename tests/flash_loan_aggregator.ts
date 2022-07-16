@@ -1,13 +1,13 @@
 import * as anchor from '@project-serum/anchor';
 import { Program, BN, IdlAccounts } from "@project-serum/anchor";
 import { Flashaggregator } from '../target/types/flashaggregator';
-import { assert, expect, use as chaiUse } from "chai";
+import { assert, use as chaiUse } from "chai";
 import {
-  AccountLayout,
-  MintLayout,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+  Connection,
+  LAMPORTS_PER_SOL
+} from '@solana/web3.js';
+import { requestAirdrop1, sleep } from './util';
+
 
 
 import { Blockchain } from './blockchain';
@@ -32,48 +32,36 @@ describe('flashaggregator', () => {
 
 
 
-  // // Provide some sols for the program to initilise space
-  // provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
 
-  it.skip('initialise and check current flash fee', async () => {
-    // Add your test here.
-
-    // Call start_stuff_off, pass it the params it needs!
-    let tx = await program.rpc.initialize({
-      accounts: {
-        baseAccount: baseAccount.publicKey,
-        user: provider.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
-      },
-      signers: [baseAccount],
-    });
-
-    console.log("📝 Your transaction signature", tx);
-
-
-    // Fetch data from the account
-    let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-
-    const current_flash_fee = account.flashFee;
-    console.log('👀 Current flash fee', current_flash_fee.toString());
-
-    // TODO: do we do a string comparison or integer comparison for a test like this?
-    // Are there rounding errors to watch out for?
-    assert.equal(23, current_flash_fee);
-
-  });
-
-  it.skip('maxflashloan run test', async () => {
-    // Add your test here.
+  it.skip('get maxflashloan run test', async () => {
+    // Not implemented yet
     const tx = await program.rpc.maxflashloan({});
     console.log("Your transaction signature", tx);
+
   });
 
   it('Borrow flash loan from Solend on behalf of caller', async () => {
 
-    const bc = new Blockchain();
-    await bc.getConnection();
+
+
+    // --------------------------------------- connection
+
+    const url = 'https://api.devnet.solana.com';
+
+    const connection = new Connection(url, 'recent');
+    const version = await connection.getVersion();
+    console.log('connection to cluster established:', url, version);
+
+
+    // Provide some sols for the program to initilise space
+    await requestAirdrop1(connection, LAMPORTS_PER_SOL * 1, baseAccount);
+    await sleep(1000);
+    const bc = new Blockchain(connection);
+    await sleep(1000);
+
     await bc.initLendingMarket();
+    await sleep(1000);
+
     await bc.initReserve(bc.tokenA, 100, 40);
     await bc.initObligation();
     await bc.calcAndPrintMetrics();

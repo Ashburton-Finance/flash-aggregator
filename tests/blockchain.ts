@@ -67,6 +67,10 @@ interface IToken {
 export class Blockchain {
   connection: Connection;
 
+  constructor(message: Connection) {
+    this.connection = message;
+  }
+
   FLASH_LOAN_PROGRAM_ID = new PublicKey("4Hz4EjqhCeeHdx2u36NnuWC83tXidzrrwr1858VFJN8s");
 
   ownerKp: Keypair = null;
@@ -130,21 +134,14 @@ export class Blockchain {
     reserveBState: null,
   }
 
-  // --------------------------------------- connection
 
-  async getConnection() {
-    const url = 'https://api.devnet.solana.com';
-    this.connection = new Connection(url, 'recent');
-    const version = await this.connection.getVersion();
-    console.log('connection to cluster established:', url, version);
-  }
 
   // --------------------------------------- init lending market
 
   async initLendingMarket() {
-    this.ownerKp = await newAccountWithLamports(this.connection, LAMPORTS_PER_SOL * 10);
-
     console.log('create & initiate lending market');
+
+    this.ownerKp = await newAccountWithLamports(this.connection, LAMPORTS_PER_SOL * 1);
     const createLendingMarketAccIx = await this._generateCreateStateAccIx(
       this.lendingMarketKp.publicKey,
       LENDING_MARKET_SIZE,
