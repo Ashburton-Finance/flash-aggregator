@@ -14,9 +14,12 @@ Applications for flash loans are:
 4. many more undiscovered applications
 
 # Method of operation
-When a borrower requests for a certain amount of funds, the aggregator flash borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
+When a borrower smart contract requests for a certain amount of funds, the flash aggregator borrows as much as possible from the pool with the lowest fees. If all that can borrowed has been borrowed from this pool and its not enough, funds are flash borrowed from the next cheapest pool. This goes on until the requested amount of funds are flash borrowed. Then this funds are passed on to the borrower. 
 
 The borrower must return the principle along with the fee in order for the transaction to succeed.
+
+## Borrowing sequence
+[![](https://mermaid.ink/img/pako:eNp9kt1uwjAMhV_FytXQuhfoJqT9sMvdcBsJmcYtEW1SHIdpQrz7XEqHBtNy08g65_Oxm4OpoiNTmkS7TKGiN48NY_doA-jpkcVXvscg8BKZ4ycxYLrcl50q4DUGYazk1lS3mDYrbBqmBiWezO9DDZ4vtb8gU4eH-fyaUUJDshqrbcRwBxK3FArALmbtORsJ1zYlTdASeBg3CbnJdD_qoSaCPbaZbBgxH1EI4l5nndzFbaCffaTTKNV5FMiJEgwZtdEpZNIP1Dk4gKc1zwF57VXaUAGt32XvUHwMoEuJslGeYNqmKcq_O2GSzOHXWmaD0QZTmI64Q-_0Px8GlDUK78iaUq-OasytWGPDUaW51wy0cF6ppqyxTVQYzBKXX6EypXCmSXR-K2fV8Rv5NdNa)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp9kt1uwjAMhV_FytXQuhfoJqT9sMvdcBsJmcYtEW1SHIdpQrz7XEqHBtNy08g65_Oxm4OpoiNTmkS7TKGiN48NY_doA-jpkcVXvscg8BKZ4ycxYLrcl50q4DUGYazk1lS3mDYrbBqmBiWezO9DDZ4vtb8gU4eH-fyaUUJDshqrbcRwBxK3FArALmbtORsJ1zYlTdASeBg3CbnJdD_qoSaCPbaZbBgxH1EI4l5nndzFbaCffaTTKNV5FMiJEgwZtdEpZNIP1Dk4gKc1zwF57VXaUAGt32XvUHwMoEuJslGeYNqmKcq_O2GSzOHXWmaD0QZTmI64Q-_0Px8GlDUK78iaUq-OasytWGPDUaW51wy0cF6ppqyxTVQYzBKXX6EypXCmSXR-K2fV8Rv5NdNa)
 
 # Getting a unique id for your program
 
