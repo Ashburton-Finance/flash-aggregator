@@ -1,6 +1,8 @@
 # Archived for now
 This project is archived because it does not make much sense to aggregate best flash loan providers on-chain. Easier to do it offchain, as the loan fees are well known prior to the transaction.
 
+The major limiting factor is the compute limit in Solana - it restricts how much computation can occur in a single transation, and its likely that the operations of flash borrowing, passing on the loan, and then passing it back to the lender will breach the compute limit.
+
 # Flash-aggregator
 
 Flash-aggregator brings the cheapest flash loans to Solana. It aggregates all the existing flash loans providers, and returns the flash loan with the lowest possible fee. The platfrom currently accesses the reserves of [Port.finance](https://port.finance/) and [Solend](https://solend.fi/), and more compatible reserves will be added in the future.
