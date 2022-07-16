@@ -139,9 +139,9 @@ export class Blockchain {
   // --------------------------------------- init lending market
 
   async initLendingMarket() {
-    this.ownerKp = await newAccountWithLamports(this.connection, LAMPORTS_PER_SOL * 10);
-
     console.log('create & initiate lending market');
+
+    this.ownerKp = await newAccountWithLamports(this.connection, LAMPORTS_PER_SOL * 1);
     const createLendingMarketAccIx = await this._generateCreateStateAccIx(
       this.lendingMarketKp.publicKey,
       LENDING_MARKET_SIZE,

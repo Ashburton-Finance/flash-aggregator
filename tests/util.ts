@@ -21,16 +21,18 @@ export function sleep(ms: number): Promise<void> {
 }
 
 export async function requestAirdrop1(connection: Connection, lamports: number, account: Keypair) {
-  //new restriction of max 5 sol
+  //new restriction of max 1 sol
   if (lamports > LAMPORTS_PER_SOL * 1) {
     lamports = LAMPORTS_PER_SOL * 1
   }
 
   let retries = 30;
+  console.log('Request airdrop');
   // console.log("new account is ", account);
+  await sleep(1000);
   await connection.requestAirdrop(account.publicKey, lamports);
   for (;;) {
-    // console.log('round', retries)
+    console.log('round', retries)
     await sleep(500);
     if (lamports == (await connection.getBalance(account.publicKey))) {
       console.log(`Airdrop for ${lamports / LAMPORTS_PER_SOL} SOL was successful.`)

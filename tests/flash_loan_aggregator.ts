@@ -4,8 +4,9 @@ import { Flashaggregator } from '../target/types/flashaggregator';
 import { assert, use as chaiUse } from "chai";
 import {
   Connection,
+  LAMPORTS_PER_SOL
 } from '@solana/web3.js';
-import { requestAirdrop1 } from './util';
+import { requestAirdrop1, sleep } from './util';
 
 
 
@@ -53,10 +54,14 @@ describe('flashaggregator', () => {
 
 
     // Provide some sols for the program to initilise space
-    await requestAirdrop1(connection, 1000000000, baseAccount);
-
+    await requestAirdrop1(connection, LAMPORTS_PER_SOL * 1, baseAccount);
+    await sleep(1000);
     const bc = new Blockchain(connection);
+    await sleep(1000);
+
     await bc.initLendingMarket();
+    await sleep(1000);
+
     await bc.initReserve(bc.tokenA, 100, 40);
     await bc.initObligation();
     await bc.calcAndPrintMetrics();
