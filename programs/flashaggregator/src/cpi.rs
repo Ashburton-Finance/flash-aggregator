@@ -76,41 +76,41 @@ pub fn flash_loan<'info>(
 #[derive(Accounts)]
 pub struct FlashLoan<'info> {
     // Lending program
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub lending_program: AccountInfo<'info>,
     // Source liquidity token account
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub source_liquidity: AccountInfo<'info>,
     // Destination liquidity token account - same mint as source liquidity
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub destination_liquidity: AccountInfo<'info>, // must be owned by transfer authority
     // Reserve account
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub reserve: AccountInfo<'info>,
     // Flash loan fee receiver account
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub flash_loan_fee_receiver: AccountInfo<'info>,
     // Host fee receiver
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub host_fee_receiver: AccountInfo<'info>,
     // Lending market account
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub lending_market: AccountInfo<'info>,
     // Derived lending market authority - PDA
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub derived_lending_market_authority: AccountInfo<'info>,
     // Token program ID
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub token_program_id: AccountInfo<'info>,
     // Flash loan program receiver ID
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub flask_loan_receiver: AccountInfo<'info>,
 
     // ADD ANY ADDITIONAL ACCOUNTS THAT MAY BE EXPECTED BY THE
     // RECEIVER'S FLASHLOAN INSTRUCTION
 
     // transfer_authority
-    /// CHECK: This is not dangerous because we don't read or write from this account
+    /// CHECK:
     pub transfer_authority: AccountInfo<'info>,
 }
 
