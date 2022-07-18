@@ -31,14 +31,17 @@ Inter program function calls are made with Cross Program invocations.
 Pseudo code of the aggregation function.
 ```python
 
-flash_provider_list = [solend, port_finance, flash_provider_3, flash_provider_4] # List sorted by lowest flash fee(%) to highest flash fee(%)
+# List sorted by lowest flash fee(%) to highest flash fee(%)
+flash_provider_list = [solend, port_finance, flash_provider_3, flash_provider_4]
 flash_provider_list_length = len(flash_provider_list)
 
 def get_flash_loan(token, expected_amount, token):
     borrowed_amount = 0
     provider_index = 0
     while borrowed_amount < expected_amount:
-        borrowed_amount += flash_borrow_max(flash_provider_list[provider_index], token ) # Borrow max possible amount of given token from this flash loan provider
+
+        # Borrow max possible amount of given token from this flash loan provider
+        borrowed_amount += flash_borrow_max(flash_provider_list[provider_index], token )
         provider_index+=1
 
         # Exit when we have run out of flash loan providers; Pass on what we got.
