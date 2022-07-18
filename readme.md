@@ -39,7 +39,8 @@ def get_flash_loan(token, expected_amount, token):
     borrowed_amount = 0
     provider_index = 0
 
-    # Go through each flash loan provider's reserves and borrow until required amount has been accumulated.
+    # Go through each flash loan provider's reserves and borrow until required amount 
+    # has been accumulated.
     while borrowed_amount < expected_amount:
 
         # Borrow max possible amount of given token from this flash loan provider
