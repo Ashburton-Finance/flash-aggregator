@@ -28,6 +28,33 @@ Inter program function calls are made with Cross Program invocations.
 ## Borrowing sequence
 [![](https://mermaid.ink/img/pako:eNp9kt1uwjAMhV_FytXQuhfoJqT9sMvdcBsJmcYtEW1SHIdpQrz7XEqHBtNy08g65_Oxm4OpoiNTmkS7TKGiN48NY_doA-jpkcVXvscg8BKZ4ycxYLrcl50q4DUGYazk1lS3mDYrbBqmBiWezO9DDZ4vtb8gU4eH-fyaUUJDshqrbcRwBxK3FArALmbtORsJ1zYlTdASeBg3CbnJdD_qoSaCPbaZbBgxH1EI4l5nndzFbaCffaTTKNV5FMiJEgwZtdEpZNIP1Dk4gKc1zwF57VXaUAGt32XvUHwMoEuJslGeYNqmKcq_O2GSzOHXWmaD0QZTmI64Q-_0Px8GlDUK78iaUq-OasytWGPDUaW51wy0cF6ppqyxTVQYzBKXX6EypXCmSXR-K2fV8Rv5NdNa)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp9kt1uwjAMhV_FytXQuhfoJqT9sMvdcBsJmcYtEW1SHIdpQrz7XEqHBtNy08g65_Oxm4OpoiNTmkS7TKGiN48NY_doA-jpkcVXvscg8BKZ4ycxYLrcl50q4DUGYazk1lS3mDYrbBqmBiWezO9DDZ4vtb8gU4eH-fyaUUJDshqrbcRwBxK3FArALmbtORsJ1zYlTdASeBg3CbnJdD_qoSaCPbaZbBgxH1EI4l5nndzFbaCffaTTKNV5FMiJEgwZtdEpZNIP1Dk4gKc1zwF57VXaUAGt32XvUHwMoEuJslGeYNqmKcq_O2GSzOHXWmaD0QZTmI64Q-_0Px8GlDUK78iaUq-OasytWGPDUaW51wy0cF6ppqyxTVQYzBKXX6EypXCmSXR-K2fV8Rv5NdNa)
 
+Pseudo code of the aggregation function:
+```python
+
+# List sorted by lowest flash fee(%) to highest flash fee(%)
+flash_provider_list = [solend, port_finance, flash_provider_3, flash_provider_4]
+flash_provider_list_length = len(flash_provider_list)
+
+def get_flash_loan(token, expected_amount, token):
+    borrowed_amount = 0
+    provider_index = 0
+
+    # Go through each flash loan provider's reserves and borrow until required amount 
+    # has been accumulated.
+    while borrowed_amount < expected_amount:
+
+        # Borrow max possible amount of given token from this flash loan provider
+        borrowed_amount += flash_borrow_max(flash_provider_list[provider_index], token )
+        provider_index+=1
+
+        # Exit when we have run out of flash loan providers; Pass on what we got.
+        if provider_index > flash_provider_list_length:
+            break
+    
+    pass_on_borrowed_tokens_to_caller_smart_contract()
+
+```
+
 # Getting a unique id for your program
 
 run `anchor test` first. This will generate a key pair for you. Then run:
