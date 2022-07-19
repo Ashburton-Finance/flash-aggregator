@@ -61,17 +61,6 @@ describe('flashaggregator', () => {
     // @ts-ignore
     assert.equal(bc.metrics.reserveAState.data.liquidity.availableAmount, 40n);
 
-    // --------------------------------------- depositing / withdrawing liquidity
-
-    await bc.depositReserveLiquidity(bc.tokenA, 20);
-    await bc.redeemReserveCollateral(bc.tokenA, 10);
-    await bc.calcAndPrintMetrics();
-
-    // check changes in balances add up
-    assert.equal(bc.metrics.tokenAUserBalance.value.uiAmount, 100 - 40 - 20 + 10);
-    assert.equal(bc.metrics.tokenAProtocolBalance.value.uiAmount, 40 + 20 - 10);
-
-
     // --------------------------------------- flash loan
 
     const oldBorrowedAmount = bc.metrics.obligState.data.borrowedValue.toNumber();
