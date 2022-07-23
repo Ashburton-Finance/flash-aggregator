@@ -512,7 +512,7 @@ export class Blockchain {
      * Take flash loan using the CPI
      */
     const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
-    const tx = await program.rpc.getFlashLoan(
+    const tx = await program.rpc.flashLoanWrapper(
       new anchor.BN(liquidityAmount),
       {
         accounts: {

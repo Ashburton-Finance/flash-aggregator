@@ -31,7 +31,7 @@ pub mod flashaggregator {
      * Take a flash loan on behalf of the caller, drawing from Solend, Port Finance, starting with the cheapest flash loan fee
      * until the requested amount has been borrowed. Then pass it to the caller's account.
      */
-    pub fn get_flash_loan<'info>(ctx: Context<GetFlashLoan>, amount_to_borrow: u64) -> ProgramResult {
+    pub fn flash_loan_wrapper<'info>(ctx: Context<GetFlashLoan>, amount_to_borrow: u64) -> ProgramResult {
         // ref: https://github.com/solana-labs/solana-program-library/blob/master/token-lending/program/tests/flash_loan.rs
 
         // take a flash loan
@@ -65,7 +65,7 @@ pub mod flashaggregator {
 }
 
 #[derive(Accounts)]
-pub struct GetFlashLoan<'info> {
+pub struct FlashLoanWrapper<'info> {
     // Lending program
     /// CHECK:
     pub lending_program: AccountInfo<'info>,
