@@ -513,6 +513,7 @@ export class Blockchain {
      */
     const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
     const tx = await program.rpc.flashLoanWrapper(
+      new anchor.BN(liquidityAmount),
       {
         accounts: {
           lendingProgram: LENDING_PROGRAM_ID,
