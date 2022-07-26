@@ -82,7 +82,7 @@ flashaggregator = "your-program-id"
 # Airdropping Sol
 
 ```
-solana airdrop 1 8vbPKLTCWxR9wiPMhyDkUQMMGnmeCxPXtpxvLALbQN5m --url https://api.devnet.solana.com
+solana airdrop 1 Bb3o71s7shUFVq7KixLQ1uApbU885rJVDPQXzsM7UBBp --url https://api.devnet.solana.com
 ```
 
 # Running tests

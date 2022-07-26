@@ -1,20 +1,10 @@
 import * as anchor from '@project-serum/anchor';
-import { Program, BN, IdlAccounts } from "@project-serum/anchor";
+import { Program } from "@project-serum/anchor";
 import { Flashaggregator } from '../target/types/flashaggregator';
-import { assert, expect, use as chaiUse } from "chai";
-import {
-  AccountLayout,
-  MintLayout,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+import { assert } from "chai";
 
 
 import { Blockchain } from './blockchain';
-
-
-// Need the system program, will talk about this soon.
-const { SystemProgram } = anchor.web3;
 
 describe('flashaggregator', () => {
 
@@ -27,14 +17,6 @@ describe('flashaggregator', () => {
 
 
   const program = anchor.workspace.Flashaggregator as Program<Flashaggregator>;
-  // Create an account keypair for our program to use.
-  const baseAccount = anchor.web3.Keypair.generate();
-
-
-
-  // // Provide some sols for the program to initilise space
-  // provider.connection.requestAirdrop(baseAccount.publicKey, 5000000000);
-
 
   it.skip('get maxflashloan run test', async () => {
     // Not implemented yet
